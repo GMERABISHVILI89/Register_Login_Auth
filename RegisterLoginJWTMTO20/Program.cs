@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using RegisterLoginJWTMTO20.Filters;
 using RegisterLoginJWTMTO20.Interfaces;
+using RegisterLoginJWTMTO20.Middlewares;
 using RegisterLoginJWTMTO20.Models;
 using RegisterLoginJWTMTO20.Services;
 using System.Text;
@@ -22,6 +23,8 @@ namespace RegisterLoginJWTMTO20
             //    options.Filters.Add<ExecutionTimeFilter>();
             //});
 
+
+            builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>(); 
             //builder.Services.AddControllers();
 
             builder.Services.AddControllers(options =>
@@ -103,6 +106,9 @@ namespace RegisterLoginJWTMTO20
 
             app.UseAuthentication();
 
+            //middleware 
+            app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+          
             app.UseAuthorization();
 
             app.MapControllers();
