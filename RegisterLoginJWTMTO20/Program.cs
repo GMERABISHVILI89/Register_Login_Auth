@@ -23,7 +23,7 @@ namespace RegisterLoginJWTMTO20
             //    options.Filters.Add<ExecutionTimeFilter>();
             //});
 
-
+            //middleware service added
             builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>(); 
             //builder.Services.AddControllers();
 
